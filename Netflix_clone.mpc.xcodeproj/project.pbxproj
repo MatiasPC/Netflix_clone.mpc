@@ -17,6 +17,8 @@
 		60CFFA5A28368F7A00A75B1C /* Netflix_clone_mpcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CFFA5928368F7A00A75B1C /* Netflix_clone_mpcTests.swift */; };
 		60CFFA6428368F7A00A75B1C /* Netflix_clone_mpcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CFFA6328368F7A00A75B1C /* Netflix_clone_mpcUITests.swift */; };
 		60CFFA6628368F7A00A75B1C /* Netflix_clone_mpcUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CFFA6528368F7A00A75B1C /* Netflix_clone_mpcUITestsLaunchTests.swift */; };
+		60CFFA742836901700A75B1C /* initialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CFFA722836901700A75B1C /* initialViewController.swift */; };
+		60CFFA752836901700A75B1C /* initialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CFFA732836901700A75B1C /* initialViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		60CFFA5F28368F7A00A75B1C /* Netflix_clone.mpcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Netflix_clone.mpcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60CFFA6328368F7A00A75B1C /* Netflix_clone_mpcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netflix_clone_mpcUITests.swift; sourceTree = "<group>"; };
 		60CFFA6528368F7A00A75B1C /* Netflix_clone_mpcUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netflix_clone_mpcUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		60CFFA722836901700A75B1C /* initialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = initialViewController.swift; sourceTree = "<group>"; };
+		60CFFA732836901700A75B1C /* initialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = initialViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		60CFFA3328368F7400A75B1C = {
 			isa = PBXGroup;
 			children = (
+				60CFFA722836901700A75B1C /* initialViewController.swift */,
+				60CFFA732836901700A75B1C /* initialViewController.xib */,
 				60CFFA3E28368F7400A75B1C /* Netflix_clone.mpc */,
 				60CFFA5828368F7A00A75B1C /* Netflix_clone.mpcTests */,
 				60CFFA6228368F7A00A75B1C /* Netflix_clone.mpcUITests */,
@@ -237,6 +243,7 @@
 				60CFFA4F28368F7A00A75B1C /* LaunchScreen.storyboard in Resources */,
 				60CFFA4C28368F7A00A75B1C /* Assets.xcassets in Resources */,
 				60CFFA4728368F7400A75B1C /* Main.storyboard in Resources */,
+				60CFFA752836901700A75B1C /* initialViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +270,7 @@
 			files = (
 				60CFFA4428368F7400A75B1C /* ViewController.swift in Sources */,
 				60CFFA4028368F7400A75B1C /* AppDelegate.swift in Sources */,
+				60CFFA742836901700A75B1C /* initialViewController.swift in Sources */,
 				60CFFA4228368F7400A75B1C /* SceneDelegate.swift in Sources */,
 				60CFFA4A28368F7400A75B1C /* Netflix_clone_mpc.xcdatamodeld in Sources */,
 			);
