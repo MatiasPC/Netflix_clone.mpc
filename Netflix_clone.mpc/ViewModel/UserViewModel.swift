@@ -1,15 +1,14 @@
 //
-//  LogInViewModel.swift
-//  Cinemapp
+//  UserViewModel.swift
+//  Netflix_clone.mpc
 //
-//  Created by Hilario Cuervo on 24/01/2022.
+//  Created by Matias Peralta Charro on 23/05/2022.
 //
-
 import Foundation
 import FirebaseAuth
 
 
-class LogInViewModel {
+class UserViewModel {
     
     func logIn(email: String, password: String, completionHandler: @escaping (Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in

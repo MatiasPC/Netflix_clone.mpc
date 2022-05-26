@@ -5,18 +5,25 @@
 //  Created by Matias Peralta Charro on 19/05/2022.
 //
 
+
 import UIKit
+import FirebaseCore
 import CoreData
 
-@main
+
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  var window: UIWindow?
 
+  func application(_ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions:
+    [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    FirebaseApp.configure()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
+    return true
+  }
+}
 
     // MARK: UISceneSession Lifecycle
 
@@ -34,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
+var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -77,5 +84,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-}
+
 

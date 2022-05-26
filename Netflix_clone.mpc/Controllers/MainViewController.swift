@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
 
     
     @IBOutlet weak var tabBar: UITabBar!
+    
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var logOut: UIButton!
@@ -22,7 +23,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUp()
         setUpUI()
         loadMovies()
@@ -48,7 +48,7 @@ extension MainViewController {
 
 // MARK: - SetUp
 
-extension MainViewController {
+extension MainViewController: UITabBarDelegate {
     
     private func setUp() {
         tabBar.delegate = self
@@ -59,8 +59,8 @@ extension MainViewController {
     
     
     private func setUpUI() {
-        titleView.customizeView()
         tabBar.selectedItem = tabBar.items![0]
+        titleView.customizeView()
         logOut.layer.cornerRadius = logOut.frame.size.height / 6
         moviesCollectionView.backgroundColor = .none
     }
@@ -91,18 +91,22 @@ extension MainViewController {
 
 // MARK: - UITabBarDelegate
 
-extension MainViewController: UITabBarDelegate {
-    
+extension MainViewController {
+ 
+}
+
+extension MainViewController {
+
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title! == "Favoritos" {
-            let vc = FavouriteViewController()
+        if item.title! == "Favorites" {
+            let vc = FavoritesMoviesViewController()
             vc.modalPresentationStyle = .fullScreen
             vc.modalTransitionStyle = .crossDissolve
             present(vc, animated: true, completion: nil)
             tabBar.selectedItem = tabBar.items![0]
         }
     }
-    
+
 }
 
 

@@ -28,7 +28,7 @@ class TabBarViewController: UITabBarController {
         let secondTabImage = UIImage(systemName: "heart")
         let secondTabImageSelected = UIImage(systemName: "heart.fill")
         
-        let secondTabViewController = FavouriteViewController(nibName: "FavouriteViewController", bundle: nil)
+        let secondTabViewController = FavoritesMoviesViewController(nibName: "FavouriteViewController", bundle: nil)
         secondTabViewController.title = secondTabTitle
         
         let secondTabNavigationController = UINavigationController(rootViewController: secondTabViewController)

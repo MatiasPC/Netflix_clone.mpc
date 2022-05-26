@@ -3,14 +3,15 @@
 
 target 'Netflix_clone.mpc' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+   use_frameworks!
+  
 
   # Pods for Netflix_clone.mpc
-	pod 'Alamofire'
-	pod 'Firebase/Analytics'
- 	pod 'Firebase/Auth'
-  	pod 'Firebase/Firestore'
-  	pod 'SwipeCellKit'
+  pod 'Alamofire'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'SwipeCellKit'
 
   target 'Netflix_clone.mpcTests' do
     inherit! :search_paths

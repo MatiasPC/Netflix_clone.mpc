@@ -1,9 +1,10 @@
 //
 //  OneMovieCell.swift
-//  Cinemapp
+//  Netflix_clone.mpc
 //
-//  Created by Hilario Cuervo on 17/01/2022.
+//  Created by Matias Peralta Charro on 20/05/2022.
 //
+
 
 import UIKit
 

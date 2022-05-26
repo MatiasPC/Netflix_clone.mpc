@@ -20,14 +20,19 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-Eb-Z7j">
                         <rect key="frame" x="0.0" y="0.0" width="421" height="664"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qS-kz-L6G">
-                                <rect key="frame" x="5" y="5" width="411" height="559"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qS-kz-L6G">
+                                <rect key="frame" x="0.0" y="0.0" width="421" height="559"/>
+                                <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5qS-kz-L6G" secondAttribute="height" multiplier="421:559" id="oCh-3b-NaR"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ6-ap-ieq">
-                                <rect key="frame" x="5" y="569" width="411" height="90"/>
+                                <rect key="frame" x="0.0" y="559" width="421" height="105"/>
+                                <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="rG5-5f-0nh"/>
+                                    <constraint firstAttribute="width" secondItem="iZ6-ap-ieq" secondAttribute="height" multiplier="137:31" constant="-43.0322580645161" id="6Eb-Mm-keF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,18 +41,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16862745100000001" green="0.21960784310000001" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="iZ6-ap-ieq" secondAttribute="bottom" constant="5" id="0vD-Fr-Q6d"/>
-                            <constraint firstItem="5qS-kz-L6G" firstAttribute="leading" secondItem="G0f-Eb-Z7j" secondAttribute="leading" constant="5" id="TTD-UY-XnU"/>
-                            <constraint firstItem="iZ6-ap-ieq" firstAttribute="top" secondItem="5qS-kz-L6G" secondAttribute="bottom" constant="5" id="Xxe-QW-mqr"/>
-                            <constraint firstItem="iZ6-ap-ieq" firstAttribute="leading" secondItem="G0f-Eb-Z7j" secondAttribute="leading" constant="5" id="iy1-V0-QPd"/>
-                            <constraint firstItem="5qS-kz-L6G" firstAttribute="top" secondItem="G0f-Eb-Z7j" secondAttribute="top" constant="5" id="kJr-sO-9To"/>
-                            <constraint firstAttribute="trailing" secondItem="iZ6-ap-ieq" secondAttribute="trailing" constant="5" id="yeS-gf-XZe"/>
-                            <constraint firstAttribute="trailing" secondItem="5qS-kz-L6G" secondAttribute="trailing" constant="5" id="zeg-Hm-gbF"/>
+                            <constraint firstAttribute="trailing" secondItem="5qS-kz-L6G" secondAttribute="trailing" id="25p-DE-GQG"/>
+                            <constraint firstItem="5qS-kz-L6G" firstAttribute="leading" secondItem="G0f-Eb-Z7j" secondAttribute="leading" id="475-8O-viZ"/>
+                            <constraint firstItem="iZ6-ap-ieq" firstAttribute="top" secondItem="5qS-kz-L6G" secondAttribute="bottom" id="O4k-yl-qQg"/>
+                            <constraint firstItem="iZ6-ap-ieq" firstAttribute="leading" secondItem="G0f-Eb-Z7j" secondAttribute="leading" id="cci-12-uzg"/>
+                            <constraint firstItem="5qS-kz-L6G" firstAttribute="top" secondItem="G0f-Eb-Z7j" secondAttribute="top" id="h8T-0L-pb9"/>
+                            <constraint firstAttribute="trailing" secondItem="iZ6-ap-ieq" secondAttribute="trailing" id="oax-Ru-St6"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="G0f-Eb-Z7j" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9U6-HN-flb"/>
                 <constraint firstAttribute="bottom" secondItem="G0f-Eb-Z7j" secondAttribute="bottom" id="Caj-zR-XxZ"/>
@@ -59,7 +65,7 @@
                 <outlet property="moviePosterImage" destination="5qS-kz-L6G" id="y8t-k9-1Mo"/>
                 <outlet property="movieTitle" destination="iZ6-ap-ieq" id="cgg-Dh-R0A"/>
             </connections>
-            <point key="canvasLocation" x="209" y="17"/>
+            <point key="canvasLocation" x="207.97101449275365" y="16.741071428571427"/>
         </collectionViewCell>
     </objects>
     <resources>
