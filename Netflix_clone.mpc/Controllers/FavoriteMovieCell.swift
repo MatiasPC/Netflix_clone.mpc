@@ -1,8 +1,8 @@
 //
 //  FavoriteMovieCell.swift
-//  Cinemapp
+//  
 //
-//  Created by Hilario Cuervo on 26/01/2022.
+//  
 //
 
 import UIKit
