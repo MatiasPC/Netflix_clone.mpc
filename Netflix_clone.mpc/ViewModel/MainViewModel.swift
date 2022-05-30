@@ -12,7 +12,7 @@ import FirebaseAuth
 class MainViewModel {
     
     private var movies: [PopularMovieModel] = []
-    private let apiManager = ApiManager()
+    private let apiCaller = APICaller()
     
     
     func logOut() -> Error? {
@@ -26,7 +26,7 @@ class MainViewModel {
     
     
     func fetchMovies(completionHandler: @escaping (Error?) -> Void) {
-        apiManager.performPopularMoviesRequest { data, error in
+        apiCaller.performPopularMoviesRequest { data, error in
             
             if let safeData = data {
                 self.movies = safeData
@@ -42,24 +42,23 @@ class MainViewModel {
     }
     
     
-    func getMovieId(at index: Int) -> Int {
+    func getId(at index: Int) -> Int {
         return movies[index].id
     }
     
     
-    func getMovieTitle(at index: Int) -> String {
+    func getTitle(at index: Int) -> String {
         return movies[index].title
     }
     
     
-    func getMovieImageUrl(at index: Int) -> URL? {
+    func getImageUrl(at index: Int) -> URL? {
         if let safeString = movies[index].posterPath {
-            let url = URL(string: (apiManager.getImagesUrl() + safeString))
+            let url = URL(string: (apiCaller.getImagesUrl() + safeString))
             
             return url
         }
-        
+
         return nil
-    }
-    
+    }    
 }

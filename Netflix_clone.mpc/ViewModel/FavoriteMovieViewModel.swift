@@ -12,7 +12,7 @@ import Firebase
 class FavoriteMovieViewModel {
     
     private var favoritesMovies: [FavoriteMovieModel] = []
-    private let apiManager = ApiManager()
+    private let apiManager = APICaller()
     private let db = Firestore.firestore()
     
     
@@ -34,7 +34,7 @@ class FavoriteMovieViewModel {
             var favoritesMovies: [FavoriteMovieModel] = []
             
             if let e = error {
-                print(" Error -> \(e.localizedDescription)")              // informar error
+                print(" Error -> \(e.localizedDescription)")
             } else {
                 if let documents = querySnapshot?.documents {
                     for doc in documents {
@@ -82,24 +82,23 @@ class FavoriteMovieViewModel {
     }
     
     
-    func getMovieTitle(at index: Int) -> String {
+    func getTitle(at index: Int) -> String {
         return favoritesMovies[index].title
     }
     
     
-    func getMovieGenre(at index: Int) -> String {
+    func getGenre(at index: Int) -> String {
         return favoritesMovies[index].genre
     }
     
     
-    func getMovieReleaseDate(at index: Int) -> String {
+    func getRelease(at index: Int) -> String {
         return favoritesMovies[index].releaseDate
     }
     
     
-    func getMovieImageUrl(at index: Int) -> URL? {
+    func getImageUrl(at index: Int) -> URL? {
         let url = URL(string: (apiManager.getImagesUrl() + favoritesMovies[index].posterPath))
         return url
     }
-    
 }

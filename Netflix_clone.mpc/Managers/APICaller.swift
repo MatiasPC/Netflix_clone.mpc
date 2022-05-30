@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-class ApiManager {
+class APICaller {
     
     private let apiKey = "1f5274e12ce0f317806d2553ad020f60"
     private let imagesUrl = "https://image.tmdb.org/t/p/w500"

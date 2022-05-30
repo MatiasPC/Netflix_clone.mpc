@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
-    @IBOutlet weak var logOut: UIButton!
+    @IBOutlet weak var salir: UIButton!
     
     
     
@@ -23,52 +23,35 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
-        setUpUI()
+        prepare()
         loadMovies()
     }
-    
 }
-
-
-// MARK: - @IBActions
 
 extension MainViewController {
     
-    @IBAction func logOutPressed(_ sender: Any) {
+    @IBAction func salirPressed(_ sender: Any) {
         if let error = viewModel.logOut() {
-            reportError(error: "Ocurrio un error al intentar cerrar la sesion.", message: error.localizedDescription)
+            alertError(error: "Error al cerar sesion", message: error.localizedDescription)
         } else {
             dismiss(animated: true, completion: nil)
         }
     }
-    
 }
-
-
-// MARK: - SetUp
 
 extension MainViewController: UITabBarDelegate {
     
-    private func setUp() {
+    private func prepare() {
         tabBar.delegate = self
         moviesCollectionView.delegate = self
         moviesCollectionView.dataSource = self
         moviesCollectionView.register(UINib(nibName: "OneMovieCell", bundle: nil), forCellWithReuseIdentifier: "OneMovie")
-    }
-    
-    
-    private func setUpUI() {
         tabBar.selectedItem = tabBar.items![0]
         titleView.customizeView()
-        logOut.layer.cornerRadius = logOut.frame.size.height / 6
+        salir.layer.cornerRadius = salir.frame.size.height / 6
         moviesCollectionView.backgroundColor = .none
     }
-    
 }
-
-
-// MARK: - Fetching data
 
 extension MainViewController {
     
@@ -76,24 +59,16 @@ extension MainViewController {
         viewModel.fetchMovies { error in
             
             if let e = error {
-                self.reportError(error: "Ocurrio un error al intentar cargar las peliculas.", message: e.localizedDescription)
+                self.alertError(error: "Error al cargar peliculas", message: e.localizedDescription)
             } else {
                 DispatchQueue.main.async {
                     self.moviesCollectionView.reloadData()
                 }
             }
-            
         }
     }
-    
 }
 
-
-// MARK: - UITabBarDelegate
-
-extension MainViewController {
- 
-}
 
 extension MainViewController {
 
@@ -106,11 +81,7 @@ extension MainViewController {
             tabBar.selectedItem = tabBar.items![0]
         }
     }
-
 }
-
-
-// MARK: - UICollectionViewDataSource
 
 extension MainViewController: UICollectionViewDataSource {
     
@@ -122,13 +93,13 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "OneMovie", for: indexPath) as? OneMovieCell
         
-        cell?.movieTitle.text = viewModel.getMovieTitle(at: indexPath.row)
-        if let url = viewModel.getMovieImageUrl(at: indexPath.row) {
+        cell?.movieTitle.text = viewModel.getTitle(at: indexPath.row)
+        if let url = viewModel.getImageUrl(at: indexPath.row) {
             cell?.moviePosterImage.load(url: url)
         } else {
             cell?.moviePosterImage.image = UIImage(systemName: "exclamationmark.triangle.fill")
             cell?.moviePosterImage.tintColor = .systemRed
-            reportError(error: "Error", message: "Ocurrio un error al intentar cargar las imagenes de las peliculas.")
+            alertError(error: "Error", message: "Error cargando imagen")
         }
         
         return cell!
@@ -136,30 +107,45 @@ extension MainViewController: UICollectionViewDataSource {
     
 }
 
-
-// MARK: - UICollectionViewDelegate
-
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieVC = SelectedMovieViewController(movieId: viewModel.getMovieId(at: indexPath.row))
+        let movieVC = SelectedMovieViewController(movieId: viewModel.getId(at: indexPath.row))
         present(movieVC, animated: true, completion: nil)
-    }
-    
+    }    
 }
-
-
-// MARK: - Error report
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+extension UIView {
+    
+    func customizeView() {
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = false
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowRadius = 7
+    }
+}
  
 extension MainViewController {
     
-    private func reportError(error: String, message: String) {
+    private func alertError(error: String, message: String) {
         let alert = UIAlertController(title: error, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))        
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
     }
-
 }

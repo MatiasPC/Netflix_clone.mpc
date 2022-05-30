@@ -31,14 +31,11 @@ class SelectedMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadMovie()
+        getMovie()
     }
 
 }
 
-
-// MARK: - @IBActions
 
 extension SelectedMovieViewController {
     
@@ -48,7 +45,7 @@ extension SelectedMovieViewController {
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             viewModel.addToFavorites { error in
                 if let e = error {
-                    self.reportError(error: "Ocurrio un error al intentar agregar a favoritos la pelicula.", message: e.localizedDescription)
+                    self.alertError(error: "Error al agregar a favoritos", message: e.localizedDescription)
                 }
             }
             
@@ -58,54 +55,45 @@ extension SelectedMovieViewController {
             viewModel.removeFromFavorites { error in
                 
                 if let e = error {
-                    self.reportError(error: "Ocurrio un error al intentar eliminar de favoritos la pelicula.", message: e.localizedDescription)
+                    self.alertError(error: "Error al eliminar de favoritos", message: e.localizedDescription)
                 }
             }
         }
     }
-    
 }
-
-
-// MARK: - Fetching data
 
 extension SelectedMovieViewController {
     
-    private func loadMovie() {
-        viewModel.fetchMovieData { error in
+    private func getMovie() {
+        viewModel.fetchData { error in
             
             if let e = error {
-                self.reportError(error: "Ocurrio un error al intentar cargar los datos de la pelicula.", message: e.localizedDescription)
+                self.alertError(error: "Error al cargar informacion", message: e.localizedDescription)
             } else {
-                self.updateUI()
+                self.update()
             }
-            
         }
     }
-    
 }
 
 
-
-// MARK: - Auxiliary UI Methods & Error report
-
 extension SelectedMovieViewController {
     
-    private func updateUI() {
+    private func update() {
         DispatchQueue.main.async {
             
-            if let url = self.viewModel.getMovieImageUrl() {
+            if let url = self.viewModel.getImageUrl() {
                 self.movieImage.load(url: url)
             } else {
                 self.movieImage.image = UIImage(systemName: "exclamationmark.triangle.fill")
                 self.movieImage.tintColor = .systemRed
-                self.reportError(error: "Error", message: "Ocurrio un error al intentar cargar la imagen de la pelicula.")
+                self.alertError(error: "Error", message: "Error al cargar imagen")
             }
             
-            self.movieName.text = self.viewModel.getMovieTitle()
-            self.movieGenre.text = self.viewModel.getMovieGenre()
-            self.movieReleaseDate.text = self.viewModel.getMovieReleaseDate()
-            self.movieOverview.text = self.viewModel.getMovieOverview()
+            self.movieName.text = self.viewModel.getTitle()
+            self.movieGenre.text = self.viewModel.getGenre()
+            self.movieReleaseDate.text = self.viewModel.getRelease()
+            self.movieOverview.text = self.viewModel.getOverview()
             
             self.viewModel.isFavorite { isFavorite in
                 self.favoriteButton.setImage(isFavorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
@@ -113,8 +101,8 @@ extension SelectedMovieViewController {
         }
     }
     
-    
-    private func reportError(error: String, message: String) {
+
+    private func alertError(error: String, message: String) {
         let alert = UIAlertController(title: error, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         

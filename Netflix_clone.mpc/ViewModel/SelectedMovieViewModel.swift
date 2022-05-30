@@ -12,19 +12,19 @@ class SelectedMovieViewModel {
     
     private var movie = SelectedMovieModel(title: "-", backdropPath: "-", genres: [], releaseDate: "-", overview: "-", posterPath: "-")
     private let movieId: String
-    private let apiManager: ApiManager
+    private let apiCaller: APICaller
     private let db = Firestore.firestore()
      
     
     init(movieId: Int) {
-        apiManager = ApiManager(movieId: movieId)
+        apiCaller = APICaller(movieId: movieId)
         self.movieId = String(movieId)
     }
     
     
-    func fetchMovieData(completionHandler: @escaping (Error?) -> Void) {
+    func fetchData(completionHandler: @escaping (Error?) -> Void) {
         
-        apiManager.performCurrentMovieRequest { data, error in
+        apiCaller.performCurrentMovieRequest { data, error in
             if let safeData = data {
                 self.movie = safeData
             }
@@ -33,7 +33,7 @@ class SelectedMovieViewModel {
     }
     
     
-    private func loadFavoritesMovies(completionHandler: @escaping ([FavoriteMovieModel], Error?) -> Void) {
+    private func prepareFavorites(completionHandler: @escaping ([FavoriteMovieModel], Error?) -> Void) {
         db.collection(Auth.auth().currentUser!.email!).getDocuments { querySnapshot, error in
             
             var favoritesMovies: [FavoriteMovieModel] = []
@@ -66,9 +66,9 @@ class SelectedMovieViewModel {
     func addToFavorites(completionHandler: @escaping (Error?) -> Void) {
         db.collection(Auth.auth().currentUser!.email!).document(movieId).setData([
             "id": movieId,
-            "title": getMovieTitle(),
-            "genre": getMovieGenre(),
-            "releaseDate": getMovieReleaseDate(),
+            "title": getTitle(),
+            "genre": getGenre(),
+            "releaseDate": getRelease(),
             "posterPath": movie.posterPath!
         ]) { error in
             completionHandler(error)
@@ -83,37 +83,37 @@ class SelectedMovieViewModel {
     }
     
     
-    func getMovieTitle() -> String {
+    func getTitle() -> String {
         return movie.title
     }
     
     
-    func getMovieImageUrl() -> URL? {
+    func getImageUrl() -> URL? {
         if let safeString = movie.backdropPath {
-            let url = URL(string: (apiManager.getImagesUrl() + safeString))
+            let url = URL(string: (apiCaller.getImagesUrl() + safeString))
             return url
         }
         return nil
     }
     
     
-    func getMovieGenre() -> String {
+    func getGenre() -> String {
         return movie.genres[0].name
     }
     
     
-    func getMovieReleaseDate() -> String {
+    func getRelease() -> String {
         return movie.releaseDate
     }
     
     
-    func getMovieOverview() -> String {
+    func getOverview() -> String {
         return movie.overview
     }
     
     
     func isFavorite(completionHandler: @escaping (Bool) -> Void) {
-        loadFavoritesMovies { favoritesMovies, error in
+        prepareFavorites { favoritesMovies, error in
             
             var result = false
             
@@ -121,7 +121,7 @@ class SelectedMovieViewModel {
                 return
             } else {
                 for movie in favoritesMovies {
-                    if movie.title == self.getMovieTitle() {
+                    if movie.title == self.getTitle() {
                         result = true
                     }
                 }
@@ -130,5 +130,4 @@ class SelectedMovieViewModel {
             completionHandler(result)
         }
     }
-    
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesMoviesViewController" customModule="Cinemapp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesMoviesViewController" customModule="Netflix_clone_mpc" customModuleProvider="target">
             <connections>
                 <outlet property="favoritesMoviesCollectionView" destination="UTT-iT-yE6" id="cNk-N2-taV"/>
                 <outlet property="tabBar" destination="vxd-7m-WHe" id="JLq-hO-yVF"/>
@@ -25,13 +25,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favoritos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JS0-k0-tVK">
-                            <rect key="frame" x="28" y="72" width="189" height="50"/>
-                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="45"/>
-                            <color key="textColor" red="0.96470588239999999" green="0.94901960780000005" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="28" y="72" width="185.5" height="50"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                            <color key="textColor" red="0.22352941179999999" green="0.24313725489999999" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.16862745100000001" green="0.21960784310000001" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="JS0-k0-tVK" firstAttribute="leading" secondItem="wDD-PF-kqD" secondAttribute="leadingMargin" constant="20" id="LMe-Hm-FqI"/>
                         <constraint firstItem="JS0-k0-tVK" firstAttribute="top" secondItem="wDD-PF-kqD" secondAttribute="topMargin" constant="20" id="ejJ-jA-0GN"/>
@@ -52,16 +52,16 @@
                 <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxd-7m-WHe">
                     <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                     <items>
-                        <tabBarItem title="Inicio" image="house" catalog="system" id="YSX-UP-hft"/>
-                        <tabBarItem title="Favoritos" image="star.fill" catalog="system" id="GR5-Bu-OBl"/>
+                        <tabBarItem title="Inicio" image="play" catalog="system" id="YSX-UP-hft"/>
+                        <tabBarItem title="Favoritos" image="star" catalog="system" id="GR5-Bu-OBl"/>
                     </items>
                     <color key="tintColor" red="0.96470588239999999" green="0.94901960780000005" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="barTintColor" red="0.16862745100000001" green="0.21960784310000001" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="barTintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="selectedImageTintColor" red="0.97010323789999997" green="0.94901960780000005" blue="0.61515633839999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tabBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.16862745100000001" green="0.21960784310000001" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vxd-7m-WHe" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ch2-iL-7De"/>
                 <constraint firstItem="wDD-PF-kqD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fbw-1j-IIA"/>
@@ -78,8 +78,8 @@
         </view>
     </objects>
     <resources>
-        <image name="house" catalog="system" width="128" height="106"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="play" catalog="system" width="120" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

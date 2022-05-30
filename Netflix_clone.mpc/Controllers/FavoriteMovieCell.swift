@@ -1,9 +1,3 @@
-//
-//  FavoriteMovieCell.swift
-//  
-//
-//  
-//
 
 import UIKit
 import SwipeCellKit
@@ -19,12 +13,10 @@ class FavoriteMovieCell: SwipeCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        setUpUI()
+        prepare()
     }
     
-    
-    private func setUpUI() {
+    private func prepare() {
         self.layer.cornerRadius = 15.0
         self.layer.masksToBounds = false
         self.viewContainer.layer.cornerRadius = 10

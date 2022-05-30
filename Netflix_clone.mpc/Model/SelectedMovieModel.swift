@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct SelectedMovieModel: Decodable {
     let title: String
     let backdropPath: String?
@@ -16,7 +15,6 @@ struct SelectedMovieModel: Decodable {
     let overview: String
     let posterPath: String?
 }
-
 
 struct GenresModel: Decodable {
     let id: Int

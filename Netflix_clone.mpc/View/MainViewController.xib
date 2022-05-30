@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Netflix_clone_mpc" customModuleProvider="target">
             <connections>
-                <outlet property="logOut" destination="zOy-3B-4PO" id="KbB-ZE-gHs"/>
                 <outlet property="moviesCollectionView" destination="Gy8-ud-2bM" id="1vv-hX-0GI"/>
+                <outlet property="salir" destination="zOy-3B-4PO" id="prJ-uG-loK"/>
                 <outlet property="tabBar" destination="ole-wk-MRv" id="D0v-5A-Naj"/>
                 <outlet property="titleView" destination="DE6-6a-MtB" id="D42-aV-CdF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="DE6-6a-MtB">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DE6-6a-MtB">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOy-3B-4PO">
@@ -33,13 +33,21 @@
                                 <color key="baseForegroundColor" red="0.22352941179999999" green="0.24313725489999999" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </buttonConfiguration>
                             <connections>
-                                <action selector="logOutPressed:" destination="-1" eventType="touchUpInside" id="6AL-DS-JHn"/>
+                                <action selector="salirPressed:" destination="-1" eventType="touchUpInside" id="uMl-Jy-5Aj"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peliculas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ak-ZgA">
+                            <rect key="frame" x="8" y="43" width="141" height="42"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                            <color key="textColor" red="0.22352941179999999" green="0.24313725489999999" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="EIc-ak-ZgA" firstAttribute="leading" secondItem="DE6-6a-MtB" secondAttribute="leadingMargin" id="1b6-7R-L5V"/>
                         <constraint firstAttribute="trailing" secondItem="zOy-3B-4PO" secondAttribute="trailing" constant="36" id="DdV-41-v2H"/>
+                        <constraint firstItem="EIc-ak-ZgA" firstAttribute="top" secondItem="DE6-6a-MtB" secondAttribute="top" constant="43" id="PGT-2N-SOe"/>
                         <constraint firstAttribute="bottom" secondItem="zOy-3B-4PO" secondAttribute="bottom" constant="29" id="WbS-Rs-EP1"/>
                         <constraint firstItem="zOy-3B-4PO" firstAttribute="top" secondItem="DE6-6a-MtB" secondAttribute="topMargin" id="Xwm-Tt-0aM"/>
                     </constraints>

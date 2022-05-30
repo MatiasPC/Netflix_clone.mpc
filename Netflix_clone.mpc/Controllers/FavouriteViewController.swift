@@ -20,43 +20,29 @@ class FavoritesMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setUp()
-        setUpUI()
-        
-        loadFavoritesMovies()
+        prepare()
+        prepareFavorites()
     }
-
 }
-
-// MARK: - SetUp
 
 extension FavoritesMoviesViewController {
     
-    private func setUp() {
+    private func prepare() {
         tabBar.delegate = self
         favoritesMoviesCollectionView.dataSource = self
         favoritesMoviesCollectionView.register(UINib(nibName: "FavoriteMovieCell", bundle: nil), forCellWithReuseIdentifier: "FavoriteMovie")
-    }
-    
-    
-    private func setUpUI() {
         titleView.customizeView()
         tabBar.selectedItem = tabBar.items![1]
         favoritesMoviesCollectionView.backgroundColor = .none
     }
-    
 }
-
-
-// MARK: - Fetching data
 
 extension FavoritesMoviesViewController {
     
-    private func loadFavoritesMovies() {
+    private func prepareFavorites() {
         viewModel.fetchFavoriteMovies { error in
             if let e = error {
-                self.reportError(error: "Ocurrio un error al intentar cargar las peliculas favoritas.", message: e.localizedDescription)
+                self.alertError(error: "Error al cargar favoritos", message: e.localizedDescription)
             } else {
                 DispatchQueue.main.async {
                     self.favoritesMoviesCollectionView.reloadData()
@@ -64,11 +50,7 @@ extension FavoritesMoviesViewController {
             }
         }
     }
-    
 }
-
-
-// MARK: - UITabBarDelegate
 
 extension FavoritesMoviesViewController: UITabBarDelegate {
     
@@ -77,11 +59,7 @@ extension FavoritesMoviesViewController: UITabBarDelegate {
             dismiss(animated: true, completion: nil)
         }
     }
-    
 }
-
-
-// MARK: - UICollectionViewDataSource
 
 extension FavoritesMoviesViewController: UICollectionViewDataSource {
     
@@ -95,25 +73,21 @@ extension FavoritesMoviesViewController: UICollectionViewDataSource {
                 
         cell.delegate = self
 
-        cell.movieTitle.text = viewModel.getMovieTitle(at: indexPath.row)
-        cell.movieGenre.text = viewModel.getMovieGenre(at: indexPath.row)
-        cell.movieReleaseDate.text = viewModel.getMovieReleaseDate(at: indexPath.row)
+        cell.movieTitle.text = viewModel.getTitle(at: indexPath.row)
+        cell.movieGenre.text = viewModel.getGenre(at: indexPath.row)
+        cell.movieReleaseDate.text = viewModel.getRelease(at: indexPath.row)
 
-        if let url = viewModel.getMovieImageUrl(at: indexPath.row) {
+        if let url = viewModel.getImageUrl(at: indexPath.row) {
             cell.moviePosterImage.load(url: url)
         } else {
             cell.moviePosterImage.image = UIImage(systemName: "exclamationmark.triangle.fill")
             cell.moviePosterImage.tintColor = .systemRed
-            reportError(error: "Error", message: "Ocurrio un error al intentar cargar las imagenes de las peliculas.")
+            alertError(error: "Error", message: "Error al cargar imagen")
         }
 
         return cell
     }
-    
 }
-
-
-// MARK: - SwipeCollectionViewCellDelegate
 
 extension FavoritesMoviesViewController: SwipeCollectionViewCellDelegate {
     
@@ -124,14 +98,14 @@ extension FavoritesMoviesViewController: SwipeCollectionViewCellDelegate {
 
             self.viewModel.removeFromFavorites(at: indexPath.row) { error in
                 if let e = error {
-                    self.reportError(error: "Ocurrio un error al intentar remover de favoritos la pelicula.", message: e.localizedDescription)
+                    self.alertError(error: "Error al borrar pelicula", message: e.localizedDescription)
                 } else {
                     self.favoritesMoviesCollectionView.deleteItems(at: [indexPath])
                 }
             }
         }
 
-        deleteAction.image = UIImage(systemName: "trash.fill")?.withTintColor(.white)
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(.white)
         deleteAction.backgroundColor = .red
 
         return [deleteAction]
@@ -145,15 +119,12 @@ extension FavoritesMoviesViewController: SwipeCollectionViewCellDelegate {
  
         return options
     }
-    
 }
 
 
-// MARK: - Error report
-
 extension FavoritesMoviesViewController {
 
-    private func reportError(error: String, message: String) {
+    private func alertError(error: String, message: String) {
         let alert = UIAlertController(title: error, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         

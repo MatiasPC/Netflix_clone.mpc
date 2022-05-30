@@ -7,11 +7,9 @@
 
 import Foundation
 
-
 struct ResultDataModel: Decodable {
     let results: [PopularMovieModel]
 }
-
 
 struct PopularMovieModel: Decodable {
     let posterPath: String?

@@ -24,10 +24,7 @@ class initialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUp()
-        
-        
+        prepare()
     }
 }
     extension initialViewController {
@@ -37,10 +34,10 @@ class initialViewController: UIViewController {
         if let email = mailTextField.text, var password = passwordTextField.text {
             if email != "" && password != "" {
                 
-                viewModel.logIn(email: email, password: password) { error in
+                viewModel.signIn(email: email, password: password) { error in
                     
                     if let e = error {
-                        self.reportError(error: "Ocurrio un error en el inicio de sesion.", message: e.localizedDescription)
+                        self.alertError(error: "Error al iniciar sesion", message: e.localizedDescription)
                             password = ""
                     } else {
                         self.validateAccess()
@@ -58,23 +55,21 @@ class initialViewController: UIViewController {
         if var email = mailTextField.text, var password = passwordTextField.text {
             if email != "" && password != "" {
                 
-                viewModel.signUp(email: email, password: password) { error in
+                viewModel.createUser(email: email, password: password) { error in
                     
                     if let e = error {
-                        self.reportError(error: "Ocurrio un error en el registro.", message: e.localizedDescription)
+                        self.alertError(error: "Error al registrar", message: e.localizedDescription)
                             password = ""
                             email = ""
                     } else {
                         self.validateAccess()
                     }
                 }
-                
             } else {
                 warningLabel.isHidden = false
             }
         }
     }
-    
     }
 
 extension initialViewController {
@@ -88,7 +83,7 @@ extension initialViewController {
     }
     
     
-    private func reportError(error: String, message: String) {
+    private func alertError(error: String, message: String) {
         let alert = UIAlertController(title: error, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         DispatchQueue.main.async {
@@ -103,7 +98,7 @@ extension initialViewController {
     
 extension initialViewController {
     
-    private func setUp() {
+    private func prepare() {
         ingresarButton.layer.cornerRadius = ingresarButton.frame.size.height / 8
         registrarseButton.layer.cornerRadius = registrarseButton.frame.size.height / 8
         warningLabel.isHidden = true

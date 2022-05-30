@@ -16,7 +16,5 @@ class OneMovieCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
-
 }
