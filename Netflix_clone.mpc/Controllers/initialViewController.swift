@@ -26,50 +26,47 @@ class initialViewController: UIViewController {
         super.viewDidLoad()
         prepare()
     }
-}
-    extension initialViewController {
-    
-    
+
+ 
+        
+        
     @IBAction func ingresarPressed(_ sender: UIButton) {
-        if let email = mailTextField.text, var password = passwordTextField.text {
-            if email != "" && password != "" {
-                
+        guard let email = mailTextField.text, let password = passwordTextField.text else {
+            warningLabel.isHidden = false
+            return
+        }
+            guard email != "" && password != "" else {
+                warningLabel.isHidden = false
+                return
+            }
                 viewModel.signIn(email: email, password: password) { error in
-                    
                     if let e = error {
                         self.alertError(error: "Error al iniciar sesion", message: e.localizedDescription)
-                            password = ""
                     } else {
                         self.validateAccess()
                     }
                 }
-                
-            } else {
-                warningLabel.isHidden = false
             }
-        }
-    }
     
     
     @IBAction func registrarsePressed(_ sender: UIButton) {
-        if var email = mailTextField.text, var password = passwordTextField.text {
-            if email != "" && password != "" {
-                
+        guard let email = mailTextField.text, let password = passwordTextField.text else {
+            warningLabel.isHidden = false
+            return
+        }
+            guard email != "" && password != "" else {
+                warningLabel.isHidden = false
+                return
+            }
                 viewModel.createUser(email: email, password: password) { error in
-                    
                     if let e = error {
-                        self.alertError(error: "Error al registrar", message: e.localizedDescription)
-                            password = ""
-                            email = ""
+                        self.alertError(error: "Error al registrarse", message: e.localizedDescription)
                     } else {
                         self.validateAccess()
                     }
                 }
-            } else {
-                warningLabel.isHidden = false
             }
-        }
-    }
+    
     }
 
 extension initialViewController {
