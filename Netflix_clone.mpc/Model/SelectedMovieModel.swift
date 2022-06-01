@@ -8,12 +8,12 @@
 import Foundation
 
 struct SelectedMovieModel: Decodable {
-    let title: String
-    let backdropPath: String?
-    let genres: [GenresModel]
+    let title: String    
     let releaseDate: String
+    let backdropPath: String?
     let overview: String
     let posterPath: String?
+    let genres: [GenresModel]
 }
 
 struct GenresModel: Decodable {

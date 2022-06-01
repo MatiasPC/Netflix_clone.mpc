@@ -12,7 +12,7 @@ struct ResultDataModel: Decodable {
 }
 
 struct PopularMovieModel: Decodable {
+    let title: String
     let posterPath: String?
     let id: Int
-    let title: String
-}
+    }
